@@ -6,7 +6,6 @@
 #ifdef _WIN32
 #define clrscr() system("cls")
 #else
-#include <stdio.h>
 #define clrscr() system("clear")
 #endif
 
