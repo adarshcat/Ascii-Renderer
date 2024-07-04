@@ -13,6 +13,7 @@ set(SOURCES
     src/primitives/cube.c
 
     #renderer
+    src/renderer/image.c
     src/renderer/rasterizer.c
 
     # library files

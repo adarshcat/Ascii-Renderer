@@ -1,6 +1,9 @@
 #ifndef RASTERIZER_H
 #define RASTERIZER_H
 
-void rasterize(float *result, float *points, unsigned int numPoints);
+#include "renderer/image.h"
+#include "primitives/triangle.h"
+
+void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriangles);
 
 #endif

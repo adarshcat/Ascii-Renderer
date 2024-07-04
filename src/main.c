@@ -14,6 +14,9 @@
 #include "primitives/triangle.h"
 #include "primitives/cube.h"
 
+#include "renderer/image.h"
+#include "renderer/rasterizer.h"
+
 
 void delay(clock_t *lastTickClock){
     clock_t currentClock = clock();
@@ -30,6 +33,11 @@ void delay(clock_t *lastTickClock){
 int main(){
     clock_t lastTickClock = clock();
 
+    // initialise the render texture
+    Image renderImage;
+    initialiseImage(&renderImage);
+
+    // initialise the cube buffer
     Triangle cubeData[CUBE_TRIANGLES];
     generateCubeData(&cubeData[0]);
 

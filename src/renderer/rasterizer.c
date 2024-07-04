@@ -1,5 +1,5 @@
 #include "renderer/rasterizer.h"
 
-void rasterize(float *result, float *points, unsigned int numPoints){
+void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriangles){
     
 }
