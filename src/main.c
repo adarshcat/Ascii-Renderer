@@ -32,6 +32,9 @@ void delay(clock_t *lastTickClock){
 }
 
 int main(){
+    // hides cursor
+    printf("\e[?25l");
+
     clock_t lastTickClock = clock();
 
     // initialise the render texture
@@ -46,15 +49,38 @@ int main(){
     Triangle cubeData[CUBE_TRIANGLES];
     generateCubeData(&cubeData[0]);
 
-    rasterize(&renderImage, cubeData, CUBE_TRIANGLES, &camera);
+    // console string to be printed onto the terminal at once
+    char consoleString[(IMAGE_WIDTH+1)*IMAGE_HEIGHT+1];
+    consoleString[(IMAGE_WIDTH+1)*IMAGE_HEIGHT] = 0;
 
-    // while (1){
-    //     clrscr(); // clear the screen
+    for (int i=0; i<IMAGE_HEIGHT; i++){
+        consoleString[i*(IMAGE_WIDTH+1) + IMAGE_WIDTH] = '\n';
+    }
 
-    //     printf("Hello World\n");
+    while (1){
+        clrscr(); // clear the screen
 
-    //     delay(&lastTickClock); // wait just enough time for next frame (crap this doesnt take into account above exec time, hope its negligible)
-    // }
+        rasterize(&renderImage, cubeData, CUBE_TRIANGLES, &camera);
+
+        for (int y=0; y<IMAGE_HEIGHT; y++){
+            for (int x=0; x<IMAGE_WIDTH; x++){
+                byte brightness = renderImage.data[y*IMAGE_WIDTH + x];
+
+                if (brightness == 0){
+                    printf(" ");
+                    //consoleString[y*(IMAGE_WIDTH+1) + x] = ' ';
+                } else {
+                    printf("#");
+                    //consoleString[y*(IMAGE_WIDTH+1) + x] = 'O';
+                }
+            }
+            printf("\n");
+        }
+
+        //printf(consoleString);
+
+        delay(&lastTickClock); // wait just enough time for next frame
+    }
 
     return 0;
 }
