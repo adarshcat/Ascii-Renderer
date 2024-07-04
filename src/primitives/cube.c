@@ -2,53 +2,53 @@
 
 #include <stdio.h>
 
-void generateCubePoints(float *result){
-    float cubePoints[] = {
+void generateCubeData(float *result){
+    float cubeData[] = {
         // back face
-        -1.0f, -1.0f, -1.0f, // bottom-left
-        1.0f,  1.0f, -1.0f, // top-right
-        1.0f, -1.0f, -1.0f, // bottom-right         
-        1.0f,  1.0f, -1.0f, // top-right
-        -1.0f, -1.0f, -1.0f, // bottom-left
-        -1.0f,  1.0f, -1.0f, // top-left
+        -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
         // front face
-        -1.0f, -1.0f,  1.0f, // bottom-left
-        1.0f, -1.0f,  1.0f, // bottom-right
-        1.0f,  1.0f,  1.0f, // top-right
-        1.0f,  1.0f,  1.0f, // top-right
-        -1.0f,  1.0f,  1.0f, // top-left
-        -1.0f, -1.0f,  1.0f, // bottom-left
+        -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
         // left face
-        -1.0f,  1.0f,  1.0f, // top-right
-        -1.0f,  1.0f, -1.0f, // top-left
-        -1.0f, -1.0f, -1.0f, // bottom-left
-        -1.0f, -1.0f, -1.0f, // bottom-left
-        -1.0f, -1.0f,  1.0f, // bottom-right
-        -1.0f,  1.0f,  1.0f, // top-right
+        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
         // right face
-        1.0f,  1.0f,  1.0f, // top-left
-        1.0f, -1.0f, -1.0f, // bottom-right
-        1.0f,  1.0f, -1.0f, // top-right         
-        1.0f, -1.0f, -1.0f, // bottom-right
-        1.0f,  1.0f,  1.0f, // top-left
-        1.0f, -1.0f,  1.0f, // bottom-left     
+        1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+        1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+        1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+        1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+        1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+        1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
         // bottom face
-        -1.0f, -1.0f, -1.0f, // top-right
-        1.0f, -1.0f, -1.0f, // top-left
-        1.0f, -1.0f,  1.0f, // bottom-left
-        1.0f, -1.0f,  1.0f, // bottom-left
-        -1.0f, -1.0f,  1.0f, // bottom-right
-        -1.0f, -1.0f, -1.0f, // top-right
+        -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+        1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+        1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+        1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
         // top face
-        -1.0f,  1.0f, -1.0f, // top-left
-        1.0f,  1.0f , 1.0f, // bottom-right
-        1.0f,  1.0f, -1.0f, // top-right     
-        1.0f,  1.0f,  1.0f, // bottom-right
-        -1.0f,  1.0f, -1.0f, // top-left
-        -1.0f,  1.0f,  1.0f // bottom-left
+        -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+        1.0f,  1.0f , 1.0f,  0.0f,  1.0f,  0.0f,
+        1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+        1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+        -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f
     };
 
-    for (int i=0; i<CUBE_POINTS_SIZE; i++){
-        result[i] = cubePoints[i];
+    for (int i=0; i<CUBE_DATA_SIZE; i++){
+        result[i] = cubeData[i];
     }
 }

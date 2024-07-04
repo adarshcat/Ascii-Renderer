@@ -29,8 +29,8 @@ void delay(clock_t *lastTickClock){
 int main(){
     clock_t lastTickClock = clock();
 
-    float cubePoints[CUBE_POINTS_SIZE];
-    generateCubePoints(&cubePoints[0]);
+    float cubeData[CUBE_DATA_SIZE];
+    generateCubeData(&cubeData[0]);
 
     while (1){
         clrscr(); // clear the screen

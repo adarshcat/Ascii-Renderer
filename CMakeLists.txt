@@ -9,6 +9,7 @@ set(SOURCES
     # source files
     src/main.c
     src/primitives/cube.c
+    src/renderer/rasterizer.c
 
     # library files
     src/utils/mathc.c
