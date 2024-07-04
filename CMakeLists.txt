@@ -8,7 +8,11 @@ include_directories(
 set(SOURCES
     # source files
     src/main.c
+
+    # primitives
     src/primitives/cube.c
+
+    #renderer
     src/renderer/rasterizer.c
 
     # library files

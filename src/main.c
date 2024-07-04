@@ -11,6 +11,7 @@
 
 #define FRAME_RATE 15
 
+#include "primitives/triangle.h"
 #include "primitives/cube.h"
 
 
@@ -29,7 +30,7 @@ void delay(clock_t *lastTickClock){
 int main(){
     clock_t lastTickClock = clock();
 
-    float cubeData[CUBE_DATA_SIZE];
+    Triangle cubeData[CUBE_TRIANGLES];
     generateCubeData(&cubeData[0]);
 
     while (1){
