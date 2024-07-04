@@ -63,3 +63,30 @@ void generateCubeData(Triangle *result){
         vec3(&result[i].v3.normal[0], cubeData[dataOrigin+15], cubeData[dataOrigin+16], cubeData[dataOrigin+17]);
     }
 }
+
+void transformRotateCube(Triangle *triangles, Triangle *base, unsigned int totalTriangles, float time){
+    mfloat_t _cache[VEC4_SIZE];
+
+    mfloat_t rotationMatrix[MAT4_SIZE];
+    mat4_identity(rotationMatrix);
+    mat4_rotation_axis(rotationMatrix, vec3(_cache, 1, 0, 1), time);
+
+    for (int i=0; i<totalTriangles; i++){
+        mfloat_t t1[VEC4_SIZE];
+        mfloat_t t2[VEC4_SIZE];
+        mfloat_t t3[VEC4_SIZE];
+
+        vec4(_cache, base[i].v1.position[0], base[i].v1.position[1], base[i].v1.position[2], 1.0);
+        vec4_multiply_mat4(t1, _cache, rotationMatrix);
+
+        vec4(_cache, base[i].v2.position[0], base[i].v2.position[1], base[i].v2.position[2], 1.0);
+        vec4_multiply_mat4(t2, _cache, rotationMatrix);
+
+        vec4(_cache, base[i].v3.position[0], base[i].v3.position[1], base[i].v3.position[2], 1.0);
+        vec4_multiply_mat4(t3, _cache, rotationMatrix);
+        
+        vec3(triangles[i].v1.position, t1[0], t1[1], t1[2]);
+        vec3(triangles[i].v2.position, t2[0], t2[1], t2[2]);
+        vec3(triangles[i].v3.position, t3[0], t3[1], t3[2]);
+    }
+}

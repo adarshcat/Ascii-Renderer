@@ -9,6 +9,6 @@ typedef struct Image{
     byte data[IMAGE_WIDTH * IMAGE_HEIGHT];
 } Image;
 
-void initialiseImage(Image *image);
+void clearImage(Image *image);
 
 #endif

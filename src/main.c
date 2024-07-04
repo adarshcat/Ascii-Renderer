@@ -9,7 +9,7 @@
 #define clrscr() system("clear")
 #endif
 
-#define FRAME_RATE 15
+#define FRAME_RATE 8
 
 #include "primitives/triangle.h"
 #include "primitives/cube.h"
@@ -39,15 +39,16 @@ int main(){
 
     // initialise the render texture
     Image renderImage;
-    initialiseImage(&renderImage);
+    clearImage(&renderImage);
 
     // initialise the camera
     Camera camera;
     generateBasicCamera(&camera);
 
     // initialise the cube buffer
-    Triangle cubeData[CUBE_TRIANGLES];
-    generateCubeData(&cubeData[0]);
+    Triangle cubeDataBase[CUBE_TRIANGLES]; // this is for storing base information
+    Triangle cubeData[CUBE_TRIANGLES]; // this cube is for storing real-time calculations (transformations and rots..)
+    generateCubeData(&cubeDataBase[0]);
 
     // console string to be printed onto the terminal at once
     char consoleString[(IMAGE_WIDTH+1)*IMAGE_HEIGHT+1];
@@ -57,9 +58,15 @@ int main(){
         consoleString[i*(IMAGE_WIDTH+1) + IMAGE_WIDTH] = '\n';
     }
 
+    float time = 0.0; // for rotating the cube
+
     while (1){
         clrscr(); // clear the screen
 
+        time += 0.1;
+        transformRotateCube(cubeData, cubeDataBase, CUBE_TRIANGLES, time);
+
+        clearImage(&renderImage);
         rasterize(&renderImage, cubeData, CUBE_TRIANGLES, &camera);
 
         for (int y=0; y<IMAGE_HEIGHT; y++){
@@ -67,17 +74,17 @@ int main(){
                 byte brightness = renderImage.data[y*IMAGE_WIDTH + x];
 
                 if (brightness == 0){
-                    printf(" ");
-                    //consoleString[y*(IMAGE_WIDTH+1) + x] = ' ';
+                    //printf("  ");
+                    consoleString[y*(IMAGE_WIDTH+1) + x] = ' ';
                 } else {
-                    printf("#");
-                    //consoleString[y*(IMAGE_WIDTH+1) + x] = 'O';
+                    //printf("##");
+                    consoleString[y*(IMAGE_WIDTH+1) + x] = '@';
                 }
             }
-            printf("\n");
+            //printf("\n");
         }
 
-        //printf(consoleString);
+        printf(consoleString);
 
         delay(&lastTickClock); // wait just enough time for next frame
     }
