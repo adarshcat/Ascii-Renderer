@@ -1,8 +1,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#define IMAGE_WIDTH 40
-#define IMAGE_HEIGHT 40
+#include "renderer/render_settings.h"
 
 typedef unsigned char byte;
 

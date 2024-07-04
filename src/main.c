@@ -14,6 +14,7 @@
 #include "primitives/triangle.h"
 #include "primitives/cube.h"
 
+#include "renderer/camera.h"
 #include "renderer/image.h"
 #include "renderer/rasterizer.h"
 
@@ -36,6 +37,10 @@ int main(){
     // initialise the render texture
     Image renderImage;
     initialiseImage(&renderImage);
+
+    // initialise the camera
+    Camera camera;
+    generateBasicCamera(&camera);
 
     // initialise the cube buffer
     Triangle cubeData[CUBE_TRIANGLES];

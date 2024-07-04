@@ -13,6 +13,7 @@ set(SOURCES
     src/primitives/cube.c
 
     #renderer
+    src/renderer/camera.c
     src/renderer/image.c
     src/renderer/rasterizer.c
 
