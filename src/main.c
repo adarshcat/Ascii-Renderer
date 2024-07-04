@@ -46,13 +46,15 @@ int main(){
     Triangle cubeData[CUBE_TRIANGLES];
     generateCubeData(&cubeData[0]);
 
-    while (1){
-        clrscr(); // clear the screen
+    rasterize(&renderImage, cubeData, CUBE_TRIANGLES, &camera);
 
-        printf("Hello World\n");
+    // while (1){
+    //     clrscr(); // clear the screen
 
-        delay(&lastTickClock); // wait just enough time for next frame (crap this doesnt take into account above exec time, hope its negligible)
-    }
+    //     printf("Hello World\n");
+
+    //     delay(&lastTickClock); // wait just enough time for next frame (crap this doesnt take into account above exec time, hope its negligible)
+    // }
 
     return 0;
 }
