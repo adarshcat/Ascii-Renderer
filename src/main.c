@@ -91,7 +91,7 @@ int main(int argc, char *argv[]){
     while (1){
         clrscr(); // clear the screen
 
-        time += 0.1;
+        time += 0.02;
         transformRotateCube(cubeData, cubeDataBase, CUBE_TRIANGLES, time);
 
         clearImage(&frameBuffer); // clear the frame buffer
