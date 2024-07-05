@@ -7,7 +7,7 @@
 
 void projectToClipSpace(mfloat_t *result, mfloat_t *point, Camera *camera);
 
-int edgeFunction(mfloat_t *a, mfloat_t *b, mfloat_t *c);
-void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriangles, Camera *camera);
+float edgeFunctionF(mfloat_t *a, mfloat_t *b, mfloat_t *c);
+void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriangles, Camera *camera, mfloat_t *sunVector);
 
 #endif

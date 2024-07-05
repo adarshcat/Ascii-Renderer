@@ -21,6 +21,7 @@ set(SOURCES
     src/utils/mathc.c
 )
 
+set (CMAKE_C_FLAGS "-O2")
 
 add_executable(AsciiRenderer ${SOURCES})
 

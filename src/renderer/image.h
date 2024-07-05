@@ -3,12 +3,11 @@
 
 #include "renderer/render_settings.h"
 
-typedef unsigned char byte;
-
 typedef struct Image{
-    byte data[IMAGE_WIDTH * IMAGE_HEIGHT];
+    float data[IMAGE_WIDTH * IMAGE_HEIGHT];
 } Image;
 
 void clearImage(Image *image);
+void clearImageF(Image *image, float val);
 
 #endif
