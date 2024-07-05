@@ -10,3 +10,4 @@ typedef struct Triangle{
 } Triangle;
 
 #endif
+

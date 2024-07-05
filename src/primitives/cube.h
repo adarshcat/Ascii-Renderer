@@ -11,3 +11,4 @@ void generateCubeData(Triangle *result);
 void transformRotateCube(Triangle *triangles, Triangle *base, unsigned int totalTriangles, float time);
 
 #endif
+

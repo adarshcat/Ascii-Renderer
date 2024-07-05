@@ -11,3 +11,4 @@ void generateBasicCamera(Camera *camera){
 
     mat4_perspective(camera->projectionMatrix, to_radians(90.0), aspectRatio, 0.1, 100.0);
 }
+
