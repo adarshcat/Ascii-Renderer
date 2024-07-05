@@ -1,5 +1,6 @@
 #include "renderer/rasterizer.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 
 inline void projectToClipSpace(mfloat_t *result, mfloat_t *point, Camera *camera){
@@ -23,10 +24,7 @@ inline float edgeFunctionF(mfloat_t *a, mfloat_t *b, mfloat_t *c){
     return (c[0] - a[0]) * (b[1] - a[1]) - (c[1] - a[1]) * (b[0] - a[0]);
 }
 
-void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriangles, Camera *camera, mfloat_t *sunVector){
-    Image depthBuffer; // depth buffer to hold depth values
-    clearImageF(&depthBuffer, 1000000.0); // initialise with a really big number
-    
+void rasterize(Image *resultTexture, Image *depthBuffer, Triangle *triangles, unsigned int numTriangles, Camera *camera, mfloat_t *sunVector){
     for (int i=0; i<numTriangles; i++){
         Triangle triangle = triangles[i];
 
@@ -71,8 +69,8 @@ void rasterize(Image *resultTexture, Triangle *triangles, unsigned int numTriang
                     float pz = 1.0 / oneOverPz;
 
                     // if has the least depth than all previous iterations, override the info..
-                    if (depthBuffer.data[y*IMAGE_WIDTH + x] > pz){
-                        depthBuffer.data[y*IMAGE_WIDTH + x] = pz;
+                    if (depthBuffer->data[y*IMAGE_WIDTH + x] > pz){
+                        depthBuffer->data[y*IMAGE_WIDTH + x] = pz;
 
                         // some basic shading based on the normal vec and sun direction
                         mfloat_t dotProd = vec3_dot(triangle.v1.normal, sunVector);

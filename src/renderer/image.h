@@ -4,7 +4,7 @@
 #include "renderer/render_settings.h"
 
 typedef struct Image{
-    float data[IMAGE_WIDTH * IMAGE_HEIGHT];
+    float *data;
 } Image;
 
 void clearImage(Image *image);

@@ -9,16 +9,19 @@
 #define clrscr() system("clear")
 #endif
 
-#define FRAME_RATE 15
-
 #include "primitives/triangle.h"
 #include "primitives/cube.h"
 
+#include "renderer/render_settings.h"
 #include "renderer/camera.h"
 #include "renderer/image.h"
 #include "renderer/rasterizer.h"
 
 char asciiList[] = " `.-:_=;><+!rc*/z?)J{C}flu[$0MNW@"; // just some ascii characters sorted based on brightness
+
+int FRAME_RATE = 15;
+int IMAGE_WIDTH = 35;
+int IMAGE_HEIGHT = 35;
 
 void delay(clock_t *lastTickClock){
     clock_t currentClock = clock();
@@ -32,15 +35,33 @@ void delay(clock_t *lastTickClock){
     *lastTickClock = currentClock;
 }
 
-int main(){
+int main(int argc, char *argv[]){
     // hides cursor
     printf("\e[?25l");
 
+    // if an argument is passed in, change image res
+    if (argc >= 2){
+        int res = atoi(argv[1]);
+
+        IMAGE_WIDTH = res;
+        IMAGE_HEIGHT = res;
+
+        if (argc == 3){
+            FRAME_RATE = atoi(argv[2]);
+        }
+    }
+
     clock_t lastTickClock = clock();
 
-    // initialise the render texture
+    // initialise the frame buffer
     Image frameBuffer;
+    frameBuffer.data = malloc(IMAGE_WIDTH*IMAGE_HEIGHT*sizeof(float));
     clearImage(&frameBuffer);
+
+    // initialise the depth buffer
+    Image depthBuffer;
+    depthBuffer.data = malloc(IMAGE_WIDTH*IMAGE_HEIGHT*sizeof(float));
+    clearImageF(&depthBuffer, 1000000.0); // initialise with a really big number
 
     // Basic lighting
     mfloat_t sunVector[VEC3_SIZE];
@@ -67,15 +88,15 @@ int main(){
     }
 
     float time = 0.0; // for rotating the cube
-
     while (1){
         clrscr(); // clear the screen
 
         time += 0.1;
         transformRotateCube(cubeData, cubeDataBase, CUBE_TRIANGLES, time);
 
-        clearImage(&frameBuffer);
-        rasterize(&frameBuffer, cubeData, CUBE_TRIANGLES, &camera, sunVector);
+        clearImage(&frameBuffer); // clear the frame buffer
+        clearImageF(&depthBuffer, 1000000.0); // clear the depth buffer
+        rasterize(&frameBuffer, &depthBuffer, cubeData, CUBE_TRIANGLES, &camera, sunVector);
 
         for (int y=0; y<IMAGE_HEIGHT; y++){
             for (int x=0; x<IMAGE_WIDTH; x++){
