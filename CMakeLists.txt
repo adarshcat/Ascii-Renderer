@@ -25,6 +25,8 @@ set (CMAKE_C_FLAGS "-O2")
 
 add_executable(AsciiRenderer ${SOURCES})
 
+target_link_libraries(AsciiRenderer m)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
