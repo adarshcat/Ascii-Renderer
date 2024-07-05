@@ -8,3 +8,4 @@ extern int IMAGE_WIDTH;
 extern int IMAGE_HEIGHT;
 
 #endif
+

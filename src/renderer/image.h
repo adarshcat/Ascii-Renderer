@@ -11,3 +11,4 @@ void clearImage(Image *image);
 void clearImageF(Image *image, float val);
 
 #endif
+

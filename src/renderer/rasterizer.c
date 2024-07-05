@@ -25,7 +25,7 @@ inline float edgeFunctionF(mfloat_t *a, mfloat_t *b, mfloat_t *c){
 }
 
 void rasterize(Image *resultTexture, Image *depthBuffer, Triangle *triangles, unsigned int numTriangles, Camera *camera, mfloat_t *sunVector){
-    for (int i=0; i<numTriangles; i++){
+    for (unsigned int i=0; i<numTriangles; i++){
         Triangle triangle = triangles[i];
 
         mfloat_t v0[VEC3_SIZE];
@@ -86,3 +86,4 @@ void rasterize(Image *resultTexture, Image *depthBuffer, Triangle *triangles, un
         
     }
 }
+

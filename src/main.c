@@ -6,7 +6,7 @@
 #ifdef _WIN32
 #define clrscr() system("cls")
 #else
-#define clrscr() system("clear")
+#define clrscr() printf("\033[1;1H\033[2J")
 #endif
 
 #include "primitives/triangle.h"
@@ -37,7 +37,7 @@ void delay(clock_t *lastTickClock){
 
 int main(int argc, char *argv[]){
     // hides cursor
-    printf("\e[?25l");
+    printf("\033[?25l");
 
     // if an argument is passed in, change image res
     if (argc >= 2){
@@ -108,10 +108,11 @@ int main(int argc, char *argv[]){
             //printf("\n");
         }
 
-        printf(consoleString);
+        printf("%s", consoleString);
 
         delay(&lastTickClock); // wait just enough time for next frame based on frameRate
     }
 
     return 0;
 }
+

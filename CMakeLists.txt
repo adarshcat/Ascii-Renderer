@@ -5,6 +5,13 @@ include_directories(
     src
 )
 
+
+# Enable sanitizers for Debug build type
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=undefined,address")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -pedantic")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
+
+
 set(SOURCES
     # source files
     src/main.c
@@ -21,11 +28,12 @@ set(SOURCES
     src/utils/mathc.c
 )
 
-set (CMAKE_C_FLAGS "-O2")
-
 add_executable(AsciiRenderer ${SOURCES})
 
 target_link_libraries(AsciiRenderer m)
+
+
+
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

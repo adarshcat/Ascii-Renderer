@@ -16,3 +16,4 @@ typedef struct Camera{
 void generateBasicCamera(Camera *camera);
 
 #endif
+

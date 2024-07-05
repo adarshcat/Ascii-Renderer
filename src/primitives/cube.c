@@ -48,7 +48,7 @@ void generateCubeData(Triangle *result){
         -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f
     };
 
-    for (int i=0; i<CUBE_TRIANGLES; i++){
+    for (unsigned int i=0; i<CUBE_TRIANGLES; i++){
         int dataOrigin = i*DATA_PER_TRIANGLE;
         // write the position and nroma from cubeData buffer into the vertex1
         vec3(&result[i].v1.position[0], cubeData[dataOrigin+0], cubeData[dataOrigin+1], cubeData[dataOrigin+2]);
@@ -71,7 +71,7 @@ void transformRotateCube(Triangle *triangles, Triangle *base, unsigned int total
     mat4_identity(rotationMatrix);
     mat4_rotation_axis(rotationMatrix, vec3(tempVec4, 1, 0, 1), time);
 
-    for (int i=0; i<totalTriangles; i++){
+    for (unsigned int i=0; i<totalTriangles; i++){
         mfloat_t t1[VEC4_SIZE];
         mfloat_t t2[VEC4_SIZE];
         mfloat_t t3[VEC4_SIZE];
@@ -108,3 +108,4 @@ void transformRotateCube(Triangle *triangles, Triangle *base, unsigned int total
         // ------------------------
     }
 }
+

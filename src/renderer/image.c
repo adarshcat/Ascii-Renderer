@@ -11,3 +11,4 @@ void clearImageF(Image *image, float val){
         image->data[i] = val;
     }
 }
+
