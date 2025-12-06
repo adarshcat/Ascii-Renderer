@@ -4,7 +4,7 @@ Does software based rasterization over the CPU and renders it onto the terminal 
 
 ## Dependencies
 
-No external dependencies.
+Requires NCurses.
 
 ## How to build
 

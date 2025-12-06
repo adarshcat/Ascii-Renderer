@@ -7,7 +7,6 @@ include_directories(
 
 
 # Enable sanitizers for Debug build type
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=undefined,address")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -pedantic")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
 
@@ -30,7 +29,7 @@ set(SOURCES
 
 add_executable(AsciiRenderer ${SOURCES})
 
-target_link_libraries(AsciiRenderer m)
+target_link_libraries(AsciiRenderer m ncursesw)
 
 
 

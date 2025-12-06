@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ncurses/ncurses.h>
 
 // some macro which makes clear screen cross-platform (just call clrscr() to clear screen now)
 #ifdef _WIN32
@@ -36,8 +37,8 @@ void delay(clock_t *lastTickClock){
 }
 
 int main(int argc, char *argv[]){
-    // hides cursor
-    printf("\033[?25l");
+    initscr();
+    noecho();
 
     // if an argument is passed in, change image res
     if (argc >= 2){
@@ -89,7 +90,7 @@ int main(int argc, char *argv[]){
 
     float time = 0.0; // for rotating the cube
     while (1){
-        clrscr(); // clear the screen
+        clear();
 
         time += 0.02;
         transformRotateCube(cubeData, cubeDataBase, CUBE_TRIANGLES, time);
@@ -105,13 +106,15 @@ int main(int argc, char *argv[]){
 
                 consoleString[y*(IMAGE_WIDTH+1) + x] = asciiList[asciiIndex];
             }
-            //printf("\n");
         }
 
-        printf("%s", consoleString);
+        printw(consoleString);
+        refresh();
 
         delay(&lastTickClock); // wait just enough time for next frame based on frameRate
     }
+
+    endwin();
 
     return 0;
 }
